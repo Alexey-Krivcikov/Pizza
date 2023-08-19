@@ -1,0 +1,44 @@
+import React from 'react';
+import styles from './Search.module.scss';
+
+const Search = ({ setSearchValue, searchValue }) => {
+  return (
+    <div className={styles.root}>
+      <svg
+        className={styles.icon}
+        version="1.1"
+        viewBox="0 0 16 16"
+        xmlns="http://www.w3.org/2000/svg">
+        <g id="Guide" />
+        <g id="Layer_2">
+          <path d="M13.85,13.15l-2.69-2.69c0.74-0.9,1.2-2.03,1.2-3.28C12.37,4.33,10.04,2,7.18,2S2,4.33,2,7.18s2.33,5.18,5.18,5.18   c1.25,0,2.38-0.46,3.28-1.2l2.69,2.69c0.1,0.1,0.23,0.15,0.35,0.15s0.26-0.05,0.35-0.15C14.05,13.66,14.05,13.34,13.85,13.15z    M3,7.18C3,4.88,4.88,3,7.18,3s4.18,1.88,4.18,4.18s-1.88,4.18-4.18,4.18S3,9.49,3,7.18z" />
+        </g>
+      </svg>
+      <input
+        value={searchValue}
+        onChange={(event) => setSearchValue(event.target.value)}
+        className={styles.input}
+        placeholder="Поиск пиццы..."
+      />
+      {searchValue && (
+        <svg
+          onClick={() => {
+            setSearchValue('');
+            console.log('click');
+          }}
+          className={styles.clearIcon}
+          id="Layer_1"
+          version="1.1"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg">
+          <polygon
+            fill="#010101"
+            points="77.6,21.1 49.6,49.2 21.5,21.1 19.6,23 47.6,51.1 19.6,79.2 21.5,81.1 49.6,53 77.6,81.1 79.6,79.2   51.5,51.1 79.6,23 "
+          />
+        </svg>
+      )}
+    </div>
+  );
+};
+
+export default Search;
