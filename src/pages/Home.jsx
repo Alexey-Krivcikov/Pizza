@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
 import Categories from '../components/Categories';
@@ -78,14 +78,18 @@ const Home = () => {
 
   // Если был первый рендер, то запрашиваем пиццы
   React.useEffect(() => {
-    if (isSearch.current) {
+    if (!isSearch.current) {
       getPizzas();
     }
 
     isSearch.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
-  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+  const pizzas = items.map((obj) => (
+    <Link to={`/items/${obj.id}`} key={obj.id}>
+      <PizzaBlock {...obj} />
+    </Link>
+  ));
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
   return (
