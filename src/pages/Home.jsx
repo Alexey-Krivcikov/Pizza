@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
 import Categories from '../components/Categories';
-import Sort, { list } from '../components/Sort';
+import Sort, { sortList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaPlock';
 import Skeleton from '../components/PizzaPlock/Skeleton';
 import Pagination from '../components/Pagination';
@@ -69,7 +69,7 @@ const Home = () => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
 
-      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+      const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
 
       dispatch(setFilters({ ...params, sort }));
     }

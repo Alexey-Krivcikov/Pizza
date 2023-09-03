@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Categories({ value, onChangeCategory }) {
+const Categories = ({ value, onChangeCategory }) => {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
   return (
@@ -17,5 +17,5 @@ function Categories({ value, onChangeCategory }) {
       </ul>
     </div>
   );
-}
+};
 export default Categories;
