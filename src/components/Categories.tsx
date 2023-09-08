@@ -2,11 +2,16 @@ import React from 'react';
 
 type CategoriesProps = {
   value: number;
-  onChangeCategory: any;
+  onChangeCategory: (index: number) => void;
+  // С вопросительным знаком это опциональная функция
+  // getCategories?: (categories: string[]) => void;
 };
 
+const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+
 const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
-  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+  // Вопрос с точкой (?.) нужен чтобы не ломался код если опциональной функции нет
+  // getCategories?.(categories)
 
   return (
     <div className="categories">
