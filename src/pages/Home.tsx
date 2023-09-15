@@ -7,18 +7,20 @@ import Sort, { sortList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaPlock';
 import Skeleton from '../components/PizzaPlock/Skeleton';
 import Pagination from '../components/Pagination';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   selectFilter,
   setCategoryId,
   setCurrentPage,
   setFilters,
+  FilterSliceState,
 } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzasSlice';
+import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
   const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
@@ -39,13 +41,12 @@ const Home: React.FC = () => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
-      // @ts-ignore
       fetchPizzas({
         sortBy,
         order,
         category,
         search,
-        currentPage,
+        currentPage: String(currentPage),
       }),
     );
 
@@ -69,10 +70,11 @@ const Home: React.FC = () => {
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-
       const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
-
-      dispatch(setFilters({ ...params, sort }));
+      if (sort) {
+        params.sort = sort;
+      }
+      dispatch(setFilters(params));
     }
     isSearch.current = true;
   }, []);

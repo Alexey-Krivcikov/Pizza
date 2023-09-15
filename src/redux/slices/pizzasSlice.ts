@@ -13,9 +13,16 @@ type Pizza = {
   types: number[];
   rating: number;
 };
+
+// типа как объект, но в TS
+enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
 interface pizzaSliceState {
   items: Pizza[];
-  status: 'loading' | 'success' | 'error';
+  status: Status;
 }
 
 export const fetchPizzas = createAsyncThunk<Pizza[], fetchPizzasArgs>(
@@ -31,7 +38,7 @@ export const fetchPizzas = createAsyncThunk<Pizza[], fetchPizzasArgs>(
 
 const initialState: pizzaSliceState = {
   items: [],
-  status: 'loading', // loading. success. error
+  status: Status.LOADING, // loading. success. error
 };
 
 const pizzaSlice = createSlice({
@@ -45,15 +52,15 @@ const pizzaSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPizzas.pending, (state) => {
-        state.status = 'loading';
+        state.status = Status.LOADING;
         state.items = [];
       })
       .addCase(fetchPizzas.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.status = 'success';
+        state.status = Status.SUCCESS;
       })
       .addCase(fetchPizzas.rejected, (state) => {
-        state.status = 'error';
+        state.status = Status.ERROR;
         state.items = [];
       });
   },
