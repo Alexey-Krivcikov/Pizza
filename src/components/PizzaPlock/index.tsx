@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, selectCartItemById, CartItem } from '../../redux/slices/cartSlice';
-
+import { addItem } from '../../redux/cart/slice';
+import { selectCartItemById } from '../../redux/cart/selectors';
+import { CartItem } from '../../redux/cart/types';
 const typeNames = ['тонкое', 'традиционное'];
 
 type PizzaBlockProps = {

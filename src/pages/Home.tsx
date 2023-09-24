@@ -1,19 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import qs from 'qs';
 import Categories from '../components/Categories';
-import Sort, { sortList } from '../components/Sort';
+import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaPlock';
 import Skeleton from '../components/PizzaPlock/Skeleton';
 import Pagination from '../components/Pagination';
 import { useSelector } from 'react-redux';
-import {
-  selectFilter,
-  setCategoryId,
-  setCurrentPage,
-  setFilters,
-} from '../redux/slices/filterSlice';
-import { SearchPizzaParams, fetchPizzas, selectPizzaData } from '../redux/slices/pizzasSlice';
+import { setCategoryId, setCurrentPage } from '../redux/filter/slice';
+import { selectFilter } from '../redux/filter/selectors';
+import { fetchPizzas } from '../redux/pizza/asyncActions';
+import { selectPizzaData } from '../redux/pizza/selectors';
 import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
@@ -87,7 +82,6 @@ const Home: React.FC = () => {
     // if (!isSearch.current) {
     getPizzas();
     // }
-
     // isSearch.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
