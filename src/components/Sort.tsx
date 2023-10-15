@@ -16,7 +16,7 @@ type SortPopupProps = {
   value: Sort;
 };
 
-export const sortList: SortItem[] = [
+const sortList: SortItem[] = [
   { name: 'популярности (DESC)', sortProperty: SortPropertyEnum.RATING_DESC },
   { name: 'популярности (ASC)', sortProperty: SortPropertyEnum.RATING_ASC },
   { name: 'цене (DESC)', sortProperty: SortPropertyEnum.PRICE_DESC },
@@ -25,7 +25,7 @@ export const sortList: SortItem[] = [
   { name: 'алфавиту (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
-const SortPopup: React.FC<SortPopupProps> = React.memo(({ value }) => {
+export const SortPopup: React.FC<SortPopupProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
 

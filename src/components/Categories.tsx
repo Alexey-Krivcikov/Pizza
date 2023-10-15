@@ -11,7 +11,7 @@ type CategoriesProps = {
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
 // Использую React.memo для предотвращения перерисовок если не поменялись пропсы
-const Categories: React.FC<CategoriesProps> = React.memo(({ value, onChangeCategory }) => {
+export const Categories: React.FC<CategoriesProps> = React.memo(({ value, onChangeCategory }) => {
   // Вопрос с точкой (?.) нужен чтобы не ломался код если опциональной функции нет
   // getCategories?.(categories)
 
@@ -33,4 +33,3 @@ const Categories: React.FC<CategoriesProps> = React.memo(({ value, onChangeCateg
     </div>
   );
 });
-export default Categories;

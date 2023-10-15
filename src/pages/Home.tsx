@@ -1,9 +1,7 @@
 import React from 'react';
-import Categories from '../components/Categories';
-import Sort from '../components/Sort';
-import PizzaBlock from '../components/PizzaPlock';
-import Skeleton from '../components/PizzaPlock/Skeleton';
-import Pagination from '../components/Pagination';
+
+import { Pagination, SortPopup as Sort, Categories, PizzaBlock, Skeleton } from '../components';
+
 import { useSelector } from 'react-redux';
 import { setCategoryId, setCurrentPage } from '../redux/filter/slice';
 import { selectFilter } from '../redux/filter/selectors';
